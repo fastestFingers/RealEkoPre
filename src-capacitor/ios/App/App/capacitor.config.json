@@ -1,0 +1,48 @@
+{
+	"appId": "com.ekopremium.app",
+	"appName": "Eko Hotels Delivery",
+	"webDir": "www",
+	"server": {
+		"androidScheme": "https"
+	},
+	"plugins": {
+		"PushNotifications": {
+			"presentationOptions": [
+				"badge",
+				"sound",
+				"alert"
+			]
+		},
+		"GoogleAuth": {
+			"scopes": [
+				"profile",
+				"email"
+			],
+			"serverClientId": "46158489047-vptkm75h1okppmo5k0btqor6n8hki0dp.apps.googleusercontent.com",
+			"forceCodeForRefreshToken": true
+		},
+		"SplashScreen": {
+			"androidScaleType": "CENTER_CROP"
+		},
+		"Browser": {}
+	},
+	"packageClassList": [
+		"FacebookLogin",
+		"FCMPlugin",
+		"HttpPlugin",
+		"AppPlugin",
+		"AppLauncherPlugin",
+		"CAPBrowserPlugin",
+		"CAPCameraPlugin",
+		"DevicePlugin",
+		"FilesystemPlugin",
+		"GeolocationPlugin",
+		"CAPNetworkPlugin",
+		"PushNotificationsPlugin",
+		"SharePlugin",
+		"SplashScreenPlugin",
+		"ToastPlugin",
+		"GoogleAuth",
+		"CDVPlugin"
+	]
+}
