@@ -701,6 +701,22 @@
     @after-payment="afterPayment"
   />
 
+  <RedsysComponents
+    ref="redsys"
+    payment_code="redsys"
+    title="Add redsys"
+    :label="{
+      submit: this.$t('Add redsys'),
+      submit_form: this.$t('Submit'),
+      notes: this.$t('Pay using your redsys account'),
+    }"
+    :payment_credentials="
+      PaymentStore.credentials[CartStore.cart_merchant.merchant_id]
+    "
+    @after-addpayment="afterAddpayment"
+    @after-payment="afterPayment"
+  />
+
   <template v-if="getMerchantUUID">
     <ComponentsRealtime
       ref="realtime"
@@ -712,7 +728,6 @@
   </template>
 
   <!-- CUSTOM CODE -->
-
 
   <!-- END PAYMENTS COMPONENTS -->
 </template>
@@ -727,6 +742,7 @@ import { useDataStore } from "stores/DataStore";
 import { usePaymentStore } from "stores/PaymentStore";
 import { useDeliveryschedStore } from "stores/DeliverySched";
 import { useDataStorePersisted } from "stores/DataStorePersisted";
+import { Browser } from "@capacitor/browser";
 
 export default {
   name: "CheckoutPage",
@@ -772,7 +788,6 @@ export default {
     WalletComponents: defineAsyncComponent(() =>
       import("components/WalletComponents.vue")
     ),
-
     // CUSTOM PAYMENT
   },
   setup() {
@@ -830,7 +845,6 @@ export default {
   },
   created() {
     this.CartStore.getCart(true, this.payload);
-
 
     const includeUtensils = APIinterface.getStorage("include_utensils");
     if (!APIinterface.empty(includeUtensils)) {
@@ -996,8 +1010,19 @@ export default {
         });
     },
     doPayment(data) {
-      console.log(data.payment_code);
-      this.$refs[data.payment_code].PaymentRender(data);
+      try {
+        this.$refs[data.payment_code].PaymentRender(data);
+      } catch (error) {
+        this.PaymentRender(data);
+      }
+    },
+    async PaymentRender(data) {
+      let redirect = data.payment_url;
+      if (this.$q.capacitor) {
+        await Browser.open({ url: redirect });
+      } else {
+        window.open(redirect);
+      }
     },
     transactionText(data) {
       if (data === "delivery") {

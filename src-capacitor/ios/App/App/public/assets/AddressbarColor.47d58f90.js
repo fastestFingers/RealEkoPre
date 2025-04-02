@@ -1,6 +1,0 @@
-import { A as AddressbarColor$1 } from "./index.61ed5618.js";
-var AddressbarColor = () => {
-  AddressbarColor$1.set("#ff724c");
-};
-export { AddressbarColor as default };
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQWRkcmVzc2JhckNvbG9yLjQ3ZDU4ZjkwLmpzIiwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvYm9vdC9BZGRyZXNzYmFyQ29sb3IuanMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgYm9vdCB9IGZyb20gXCJxdWFzYXIvd3JhcHBlcnNcIjtcbmltcG9ydCB7IEFkZHJlc3NiYXJDb2xvciB9IGZyb20gXCJxdWFzYXJcIjtcblxuZXhwb3J0IGRlZmF1bHQgKCkgPT4ge1xuICBBZGRyZXNzYmFyQ29sb3Iuc2V0KFwiI2ZmNzI0Y1wiKTtcbn07XG4iXSwibmFtZXMiOlsiQWRkcmVzc2JhckNvbG9yIl0sIm1hcHBpbmdzIjoiO0FBR0EsSUFBQSxrQkFBZSxNQUFNO0FBQ25CQSxvQkFBZ0IsSUFBSSxTQUFTO0FBQy9COzsifQ==

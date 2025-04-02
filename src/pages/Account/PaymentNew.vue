@@ -204,9 +204,15 @@
       >
       </PaydeliveryComponents>
 
-
-
       <!-- END PAYMENTS COMPONENTS -->
+
+      <q-inner-loading
+        :showing="loading"
+        color="primary"
+        size="lg"
+        label-class="dark"
+        class="transparent"
+      />
     </q-page>
   </q-pull-to-refresh>
 </template>
@@ -221,6 +227,7 @@ export default {
   data() {
     return {
       params: "",
+      loading: false,
     };
   },
   setup() {
@@ -252,7 +259,7 @@ export default {
     PaydeliveryComponents: defineAsyncComponent(() =>
       import("components/PaydeliveryComponents.vue")
     ),
-    // custom   
+    // custom
   },
   created() {
     if (this.$route.query.redirect == "/checkout") {
@@ -268,8 +275,28 @@ export default {
       try {
         this.$refs[data.payment_code].showPaymentForm();
       } catch (error) {
-        APIinterface.notify("grey-8", error, "error_outline", this.$q);
+        this.addPayment(data.payment_code);
+        //APIinterface.notify("grey-8", error, "error_outline", this.$q);
       }
+    },
+    addPayment(value) {
+      this.loading = true;
+      const merchant_id = this.PaymentStore.payment_credentials[value]
+        ? this.PaymentStore.payment_credentials[value].merchant_id
+        : 0;
+      APIinterface.SavedPaymentProvider({
+        merchant_id: merchant_id,
+        payment_code: value,
+      })
+        .then((data) => {
+          this.afterAddpayment();
+        })
+        .catch((error) => {
+          APIinterface.notify("dark", error, "error", this.$q);
+        })
+        .then((data) => {
+          this.loading = false;
+        });
     },
     afterAddpayment() {
       if (this.$route.query.redirect == "/checkout") {

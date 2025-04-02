@@ -1,7 +1,7 @@
 {
 	"appId": "com.ekopremium.app",
 	"appName": "Eko Hotels Delivery",
-	"webDir": "www",
+	"webDir": "dist/spa",
 	"server": {
 		"androidScheme": "https"
 	},
