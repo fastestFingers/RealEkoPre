@@ -29,7 +29,10 @@
         >
           {{ $t("PROMO") }}
         </div>
-        <div class="font13 text-weight-bold no-margin line-normal">
+        <div
+          class="text-weight-bold no-margin line-normal"
+          style="font-size: 22px"
+        >
           {{ items.restaurant_name }}
         </div>
       </div>
@@ -48,16 +51,13 @@
 
     <div class="row items-center justify-between">
       <div class="col">
-        <div class="text-grey ellipsis-2-lines font12 line-normal">
-          <template
-            v-for="cuisine_index in items.cuisine_group"
-            :key="cuisine_index"
-          >
-            <template v-if="cuisine[cuisine_index]"
-              >{{ cuisine[cuisine_index].name }},
-            </template>
-          </template>
-        </div>
+        <div class="text-grey ellipsis-2-lines line-normal" style="font-size: 17px; font-weight: bold">
+  <template v-for="cuisine_index in items.cuisine_group" :key="cuisine_index">
+    <template v-if="cuisine[cuisine_index]">
+      {{ cuisine[cuisine_index].name }},
+    </template>
+  </template>
+</div>
 
         <template v-if="promos[items.merchant_id]">
           <q-chip

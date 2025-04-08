@@ -203,8 +203,8 @@
         />
 
         <q-space class="q-pa-xs"></q-space>
-<!--
- <q-tabs
+
+        <q-tabs
           v-model="featuredTab"
           dense
           active-color="primary"
@@ -226,8 +226,8 @@
             content-class="text-weight-500 "
           />
         </q-tabs>
--->
-       <q-tab-panels
+
+        <q-tab-panels
           v-model="featuredTab"
           animated
           :class="{
@@ -242,7 +242,6 @@
             :label="tabname"
             class="q-pa-sm"
           >
-
             <MerchantList
               ref="merchantList"
               list_type="featured"
